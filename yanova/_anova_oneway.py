@@ -101,7 +101,7 @@ class AnovaOnewayResult:
 
 def oneway(*args, **kwds):
     """
-    One-way analyis of variance.
+    One-way analysis of variance.
 
     This is also known as single factor analysis of variance.
 
