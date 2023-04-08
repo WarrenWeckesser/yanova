@@ -243,10 +243,6 @@ def twoway_from_a_b_values(a, b, values, sstype=None):
         `AnovaTwoway1Result` is returned.  This object does not include
         results for the interaction of the factors.
 
-    Notes
-    -----
-    .. versionadded:: 1.7.0
-
     Examples
     --------
     The response times of three subjects are measured multiple times
@@ -268,7 +264,7 @@ def twoway_from_a_b_values(a, b, values, sstype=None):
                B       2      661       C        3     551
                B       2      589       C        3     613
 
-    >>> from scipy.stats import anova
+    >>> import yanova
 
     We'll enter the data from each column as a list, and use
     `twoway_from_a_b_values` to perform the two-way analysis of
@@ -288,7 +284,7 @@ def twoway_from_a_b_values(a, b, values, sstype=None):
     same, we must specify the type of the two-way ANOVA to perform.
     Here we will perform a type 3 ANOVA.
 
-    >>> aov = anova.twoway_from_a_b_values(subj, test, values=time, sstype=3)
+    >>> aov = yanova.twoway_from_a_b_values(subj, test, values=time, sstype=3)
     >>> print(aov)
     ANOVA two-way (SS type 3)
     Source                   SS DF             MS           F          p
@@ -427,10 +423,6 @@ def twoway_from_data_grid(data, sstype=None):
         `AnovaTwoway1Result` is returned.  This object does not include
         results for the interaction of the factors.
 
-    Notes
-    -----
-    .. versionadded:: 1.7.0
-
     Examples
     --------
     The performance of three brands of oil is tested in four machines.
@@ -449,7 +441,7 @@ def twoway_from_data_grid(data, sstype=None):
 
     We perform a two-way analysis of variance on the measurements.
 
-    >>> from scipy.stats import anova
+    >>> import yanova
 
     We enter the data as a nested list; the innermost lists hold the
     measurements.  (We could make this a NumPy array, but that is not
@@ -461,7 +453,7 @@ def twoway_from_data_grid(data, sstype=None):
 
     Compute and print the two-way analysis of variance.
 
-    >>> aov = anova.twoway_from_data_grid(data)
+    >>> aov = yanova.twoway_from_data_grid(data)
     >>> print(aov)
     ANOVA two-way (SS type 1)
     Source                SS DF          MS          F          p

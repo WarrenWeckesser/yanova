@@ -103,7 +103,7 @@ def oneway(*args, **kwds):
     """
     One-way analyis of variance.
 
-    This is also know as single factor analysis of variance.
+    This is also known as single factor analysis of variance.
 
     Parameters
     ----------
@@ -122,11 +122,7 @@ def oneway(*args, **kwds):
 
     See Also
     --------
-    scipy.stats.anova.oneway_from_labels_values
-
-    Notes
-    -----
-    .. versionadded:: 1.7.0
+    yanova.oneway_from_labels_values
 
     References
     ----------
@@ -135,7 +131,7 @@ def oneway(*args, **kwds):
 
     Examples
     --------
-    >>> from scip.stats import anova
+    >>> import yanova
 
     This is Example 10.1 from Zar [1]_.
 
@@ -143,7 +139,7 @@ def oneway(*args, **kwds):
     >>> feed2 = [68.7, 67.7, 75.0, 73.3, 71.8]
     >>> feed3 = [69.6, 77.1, 75.2, 71.5]
     >>> feed4 = [61.9, 64.2, 63.1, 66.7, 60.3]
-    >>> aov = anova.oneway(feed1, feed2, feed3, feed4)
+    >>> aov = yanova.oneway(feed1, feed2, feed3, feed4)
 
     When the `aov` object is printed, it is formatted as an
     ANOVA table.
@@ -153,7 +149,7 @@ def oneway(*args, **kwds):
     Source                   SS  DF            MS            F           p
     Between groups 338.93736842   3  112.97912281  12.04040385  0.00028301
     Within groups  140.75        15  9.38333333
-    Total          479.68736842  18  26.64929825
+    Total          479.68736842  18
 
     The p-value is 0.000283, which suggests that the means of the four
     populations from which the samples were drawn are not all the same.
@@ -230,26 +226,22 @@ def _oneway_from_labels_values(labels, values):
 
     See Also
     --------
-    scipy.stats.anova.oneway
-
-    Notes
-    -----
-    .. versionadded:: 1.7.0
+    yanova.oneway
 
     Examples
     --------
-    >>> from scipy.stats import anova
+    >>> import yanova
     >>> labels = ['A', 'B', 'B', 'C', 'B', 'A', 'A', 'C', 'A',
     ...           'C', 'C', 'A', 'B', 'B', 'C', 'A', 'B', 'B']
     >>> values = [4.5, 3.0, 3.9, 4.8, 4.1, 4.2, 4.0, 4.7, 3.9,
     ...           4.1, 4.7, 4.2, 4.1, 3.8, 4.5, 4.1, 4.0, 4.1]
-    >>> aov = anova.oneway_from_labels_values(labels, values)
+    >>> aov = yanova.oneway_from_labels_values(labels, values)
     >>> print(aov)
     ANOVA one-way
     Source                 SS  DF          MS           F          p
     Between groups 1.44085714   2  0.72042857  7.38072007  0.0058652
     Within groups  1.46414286  15  0.09760952
-    Total          2.905       17  0.17088235
+    Total          2.905       17
 
     Take a look at the means of the groups and their confidence intervals.
 
@@ -288,7 +280,7 @@ def oneway_from_labels_values(labels, values):
 
     This is also known as single factor analysis of variance.
 
-    This does the same calculation as `anova.oneway`.  The difference
+    This does the same calculation as `yanova.oneway`.  The difference
     is in how the data is given to the function.
 
     Parameters
@@ -311,26 +303,22 @@ def oneway_from_labels_values(labels, values):
 
     See Also
     --------
-    scipy.stats.anova.oneway
-
-    Notes
-    -----
-    .. versionadded:: 1.7.0
+    yanova.oneway
 
     Examples
     --------
-    >>> from scipy.stats import anova
+    >>> import yanova
     >>> labels = ['A', 'B', 'B', 'C', 'B', 'A', 'A', 'C', 'A',
     ...           'C', 'C', 'A', 'B', 'B', 'C', 'A', 'B', 'B']
     >>> values = [4.5, 3.0, 3.9, 4.8, 4.1, 4.2, 4.0, 4.7, 3.9,
     ...           4.1, 4.7, 4.2, 4.1, 3.8, 4.5, 4.1, 4.0, 4.1]
-    >>> aov = anova.oneway_from_labels_values(labels, values)
+    >>> aov = yanova.oneway_from_labels_values(labels, values)
     >>> print(aov)
     ANOVA one-way
     Source                 SS  DF          MS           F          p
     Between groups 1.44085714   2  0.72042857  7.38072007  0.0058652
     Within groups  1.46414286  15  0.09760952
-    Total          2.905       17  0.17088235
+    Total          2.905       17
 
     Take a look at the means of the groups and their confidence intervals.
 

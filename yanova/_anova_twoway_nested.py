@@ -71,10 +71,6 @@ def twoway_nested_from_data_grid(data, btype='random'):
         presented in an ANOVA table.  When the object is printed, the
         output is formatted as an ANOVA table.
 
-    Notes
-    -----
-    .. versionadded:: 1.7.0
-
     References
     ----------
     .. [1] NIST/SEMATECH e-Handbook of Statistical Methods,
@@ -125,8 +121,8 @@ def twoway_nested_from_data_grid(data, btype='random'):
     Note that each horizontal row of data corresponds to a specific
     machine and operator, and comes from a column in the table.
 
-    >>> from scipy.stats import anova
-    >>> aov = anova.twoway_nested_from_data_grid(data)
+    >>> import yanova
+    >>> aov = yanova.twoway_nested_from_data_grid(data)
 
     We can print `aov` to see the full ANOVA table.
 
@@ -147,7 +143,7 @@ def twoway_nested_from_data_grid(data, btype='random'):
     0.8249303776476935
 
     If our criterion for statisical significance is a p-value
-    of 0.05 or less, than we conclude that the effect of the
+    of 0.05 or less, then we conclude that the effect of the
     operator is not significant, but that of the machine is.
 
     """
@@ -247,10 +243,6 @@ def twoway_nested_from_a_b_values(a, b, values, sstype=None, btype='fixed'):
         An object whose attributes contain the information normally
         presented in an ANOVA table.  When the object is printed, the
         output is formatted as an ANOVA table.
-
-    Notes
-    -----
-    .. versionadded:: 1.7.0
 
     Examples
     --------
