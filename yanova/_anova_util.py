@@ -37,7 +37,7 @@ def _make_table(header, rowlabels, ss, df, ms, f, p):
     return '\n'.join(txt)
 
 
-def _nway_groups(*factors, values, levels=None):
+def _nway_groups(*factors, values):
     """
     Parameters
     ----------
@@ -76,6 +76,7 @@ def _nway_groups(*factors, values, levels=None):
     2 0 (2, 5) [2.9 2.8]
     2 1 (2, 7) [2.4 2.3 2.3]
     """
+    levels = None  # Eventually this will be a function parameter.
     factors = [np.asarray(a) for a in factors]
     values = np.asarray(values)
     if len(factors) == 0:
@@ -96,7 +97,8 @@ def _nway_groups(*factors, values, levels=None):
         u, idx = np.unique(inverses, axis=1, return_inverse=True)
         u = u.T
         for i in range(len(u)):
-            groups[tuple(u[i])] = values[idx == i]
+            # The call of ravel() in the following is required for numpy 2.0+.
+            groups[tuple(u[i])] = values[idx.ravel() == i]
     else:
         raise NotImplementedError('specifying levels is not implemented yet.')
         # `levels` is not None...

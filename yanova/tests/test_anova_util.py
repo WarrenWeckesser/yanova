@@ -2,7 +2,8 @@
 import numpy as np
 from numpy.testing import assert_array_equal, assert_allclose
 from yanova._anova_util import (_unpack_2d_data_grid, _encode,
-                                _encode_nested, _interaction, _proj)
+                                _encode_nested, _interaction, _proj,
+                                _nway_groups)
 
 
 def test_unpack_2d_data_grid1():
@@ -209,3 +210,53 @@ def test_proj():
     # Xperp is perpendicular to the columns of X.
     Xperp = np.array([1, 1, -1])
     assert_allclose(P @ Xperp, np.zeros(3), atol=1e-14)
+
+
+def test_nway_groups_2factors():
+    x = np.array([0, 0, 0, 1, 1, 1])
+    y = np.array([5, 6, 6, 6, 5, 4])
+    v = np.array([2, 3, 4, 5, 6, 9])
+    levels, groups = _nway_groups(x, y, values=v)
+    # Expected values computed "by hand"
+    assert_array_equal(levels[0], [0, 1])
+    assert_array_equal(levels[1], [4, 5, 6])
+    assert groups.shape == (2, 3)
+    assert groups[0, 0] is None
+    assert_array_equal(groups[0, 1], [2])
+    assert_array_equal(groups[0, 2], [3, 4])
+    assert_array_equal(groups[1, 0], [9])
+    assert_array_equal(groups[1, 1], [6])
+    assert_array_equal(groups[1, 2], [5])
+
+
+def test_nway_groups_3factors():
+    x = np.array([0, 0, 0, 1, 1, 1, 1])
+    y = np.array([5, 6, 6, 6, 5, 4, 6])
+    z = np.array([8, 9, 9, 9, 9, 9, 9])
+    v = np.array([2, 3, 4, 5, 6, 7, 1])
+    levels, groups = _nway_groups(x, y, z, values=v)
+
+    # Expected values computed "by hand"
+    assert_array_equal(levels[0], [0, 1])
+    assert_array_equal(levels[1], [4, 5, 6])
+    assert_array_equal(levels[2], [8, 9])
+
+    assert groups.shape == (2, 3, 2)
+
+    assert groups[0, 0, 0] is None
+    assert groups[0, 0, 1] is None
+
+    assert_array_equal(groups[0, 1, 0], [2])
+    assert groups[0, 1, 1] is None
+
+    assert groups[0, 2, 0] is None
+    assert_array_equal(groups[0, 2, 1], [3, 4])
+
+    assert groups[1, 0, 0] is None
+    assert_array_equal(groups[1, 0, 1], [7])
+
+    assert groups[1, 1, 0] is None
+    assert_array_equal(groups[1, 1, 1], [6])
+
+    assert groups[1, 2, 0] is None
+    assert_array_equal(groups[1, 2, 1], [5, 1])
